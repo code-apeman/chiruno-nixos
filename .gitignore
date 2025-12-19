@@ -1,0 +1,4 @@
+# .gitignore file for チルノ (the primary server + router, and yes, I'm browsing the Web from the IP of my home lab, problems?)'s NixOS config
+
+# Exclude the TOP SECRET INFORMATION
+secrets/
