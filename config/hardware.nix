@@ -8,7 +8,7 @@
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
       open = false;
-    }
+    };
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
