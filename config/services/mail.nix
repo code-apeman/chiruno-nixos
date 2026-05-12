@@ -1,4 +1,10 @@
 { config, pkgs, ... }: {
+  networking.firewall.allowedTCPPorts = [ 80 ];
+  security.acme.acceptTerms = true;
+  security.acme.defaults.email = "admin@ghostnoise.ru";
+
+  services.nginx.virtualHosts.${config.mailserver.fqdn}.enableACME = true;
+
   mailserver = {
     enable = true;
     stateVersion = 3;
@@ -26,6 +32,4 @@
     # down nginx and opens port 80.
     certificateScheme = "acme-nginx";
   };
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "admin@ghostnoise.ru";
 }
