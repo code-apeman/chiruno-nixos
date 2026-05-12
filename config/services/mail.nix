@@ -11,6 +11,8 @@
     fqdn = "ghostnoise.ru";
     domains = [ "ghostnoise.ru" ];
 
+    x509.useACMEHost = config.mailserver.fqdn;
+
     # A list of all login accounts. To create the password hashes, use
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
