@@ -3,7 +3,7 @@
     ./services/nginx.nix
     ./services/mail.nix
     ./services/gitlab.nix
-    ./services/mastodon.nix
+    ./services/sharkey.nix
   ];
   services = {
     openssh = {
