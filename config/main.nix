@@ -18,7 +18,6 @@
   nixpkgs.config.allowUnfree = true;	# DEBIAN GTFO
 
   system = {
-    copySystemConfiguration = true;	# Won't save from an oopsie, but whatever.
     stateVersion = "25.11";		# Do not change.
   };
 

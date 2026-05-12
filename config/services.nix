@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
   imports = [
     ./services/nginx.nix
-    ./services/mail.nix
+#    ./services/mail.nix
     ./services/gitlab.nix
     ./services/sharkey.nix
   ];
