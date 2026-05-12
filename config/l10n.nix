@@ -7,6 +7,5 @@
   console = {
     font = "ter-u12n";
     keyMap = "us";
-    useXkbConfig = true; # use xkb.options in tty.
   };
 }
