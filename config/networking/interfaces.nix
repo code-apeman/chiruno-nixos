@@ -6,10 +6,10 @@
     "pcibotnic"
   ];
   networking.interfaces = {
-    lan.ipv4.addresses = {
+    lan.ipv4.addresses = [{
       address = "192.168.1.1";
       prefixLength = 24;
-    };
+    }];
     wannic.useDHCP = true;
   };
 }
