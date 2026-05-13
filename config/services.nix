@@ -12,5 +12,10 @@
     printing = {
       enable = true;
     };
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+    gvfs.enable = true;				# Enable GVFS.
   };
 }
