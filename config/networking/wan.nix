@@ -36,7 +36,7 @@
           name pwg02569
           remotename FreedomCHAP
 	'';
-      }
-    }
+      };
+    };
   };
 }
