@@ -48,7 +48,7 @@
       nemo
       inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-      inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.ayugram-desktop
+      ayugram-desktop
       prismlauncher
       pavucontrol
       wineWowPackages.waylandFull
