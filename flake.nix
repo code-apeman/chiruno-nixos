@@ -36,9 +36,8 @@
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
-  outputs = inputs@{ self, nixpkgs, simple-nixos-mailserver, ... }: {
+  outputs = inputs@{ self, nixpkgs, simple-nixos-mailserver, home-manager, ... }: {
     nixosConfigurations.chiruno = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
