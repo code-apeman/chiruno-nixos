@@ -15,7 +15,7 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ehci_pci" "ahci" ];
+      availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "pata_atiixp" "xhci_pci" "firewire_ohci" "nvme" "usbhid" ];
       kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
     kernelModules = [ "kvm-amd" ];

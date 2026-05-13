@@ -1,5 +1,16 @@
 { config, lib, pkgs, ... }: {
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    initrd.systemd.enable = false;
+    loader = {
+      systemd-boot.enable = true;		# Use the systemd-boot EFI boot loader.
+      efi.canTouchEfiVariables = true;
+      timeout = 0;
+    };
+    consoleLogLevel = 3;
+    kernelParams = [
+      "splash"
+      "boot.shell_on_fail"
+      "mitigations=off"
+    ];
+  };
 }

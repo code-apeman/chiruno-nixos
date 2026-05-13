@@ -6,12 +6,15 @@
       ./l10n.nix
       ./services.nix
       ./addpkgs.nix
+      ./desktop.nix
+      ./fonts.nix
+      ./shell.nix
   ];
 
-  # We need a non-root admin account.
+  # We need a non-root admin account. Also, since the server is the main PC now, we REALLY need that account.
   users.users.ghostnoise = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];		# Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "adbusers" ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
