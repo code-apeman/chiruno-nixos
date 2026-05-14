@@ -8,8 +8,7 @@
   services.dnsmasq = {
     enable = true;
     settings = {
-      domain-needed = true;
-      listen-address = [ "127.0.0.1,192.168.1.1,192.168.69.1" ];
+      listen-address = [ "127.0.0.1,192.168.1.1" ];
       dhcp-range = [ "192.168.1.100,192.168.1.200,12h" ];
   
       dhcp-name-match = [ "set:wpad-ignore,wpad" ];
