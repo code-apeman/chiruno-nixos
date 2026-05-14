@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: {
-  nixpkgs.overlays [ (final: prev: {
+  nixpkgs.overlays = [ (final: prev: {
     finvpnc = final.writeShellApplication {
       name = "finvpnc"
       runtimeInputs = [ iptables iproute2 ];
