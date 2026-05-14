@@ -2,6 +2,7 @@
   imports = [
     inputs.noctalia.nixosModules.default
   ];
+  nixpkgs.overlays = [ inputs.millennium.overlays.default ];
   services = {
     greetd = {	# Autologin
       enable = true;
@@ -24,7 +25,10 @@
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
-    steam.enable = true;
+    steam = {
+      enable = true;
+      package = pkgs.millennium-steam;
+    };
     firefox.enable = true;
     thunderbird.enable = true;
   };

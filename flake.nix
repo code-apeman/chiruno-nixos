@@ -31,6 +31,7 @@
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    inputs.millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   };
   outputs = inputs@{ self, nixpkgs, simple-nixos-mailserver, home-manager, ... }: {
     nixosConfigurations.chiruno = nixpkgs.lib.nixosSystem {
