@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     android-tools
     scrcpy
@@ -18,5 +18,6 @@
     brightnessctl
     pulsemixer
     rar
+    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

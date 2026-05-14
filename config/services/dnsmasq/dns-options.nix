@@ -1,7 +1,8 @@
 { config, lib, pkgs, inputs, ... }: {
   services.dnsmasq.settings = {
     server = [
-      "127.0.0.1#5053"
+      "1.1.1.1"
+      "1.0.0.1"
       "/freedom/195.98.64.65"
       "/freedom/195.98.64.66"
       "/freedom-vrn.ru/195.98.64.65"

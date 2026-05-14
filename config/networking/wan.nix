@@ -1,4 +1,11 @@
 { config, lib, pkgs, ... }: {
+  environment.etc.chap-secrets = {
+    enable = true;
+    target = "ppp/chap-secrets";
+    owner = "root";
+    group = "root";
+    mode = "0600";
+  };
   services.xl2tpd-flexible = {
     enable = true;
     xl2tpOptions = ''
@@ -18,7 +25,6 @@
       require chap = yes
       require authentication = no
       ppp debug = yes
-      pppoptfile = /etc/ppp/peers/wan-l2tp
       require pap = no
       autodial = yes
     '';

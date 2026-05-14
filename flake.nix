@@ -35,14 +35,19 @@
       url = "github:SteamClientHomebrew/Millennium/e2c66a276e579ee73c5151b01897bf63503aa12c?dir=packages/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = inputs@{ self, nixpkgs, simple-nixos-mailserver, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, simple-nixos-mailserver, home-manager, agenix, ... }: {
     nixosConfigurations.chiruno = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
         simple-nixos-mailserver.nixosModule
         ./config/main.nix
+        agenix.nixosModules.default
         home-manager.nixosModules.home-manager {
           home-manager = {
             useGlobalPkgs = true;
