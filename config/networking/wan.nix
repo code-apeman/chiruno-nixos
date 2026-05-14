@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
-  environment.etc.chap-secrets = {
-    enable = true;
-    target = "ppp/chap-secrets";
+  age.secrets.l2tp-secrets = {
+    file = ../../secrets/l2tp-secrets.age;
+    path = "/etc/xl2tpd/ppp/chap-secrets";
     owner = "root";
     group = "root";
     mode = "0600";
@@ -11,7 +11,6 @@
     xl2tpOptions = ''
       [global]
       access control = no
-      auth file = /etc/ppp/chap-secrets
       debug avp = no
       debug network = no
       debug packet = no

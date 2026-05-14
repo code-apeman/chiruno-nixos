@@ -1,4 +1,5 @@
 { config, pkgs, ... }: {
+  age.secrets.mailpassword.file = ../../secrets/mailpassword.age
   networking.firewall.allowedTCPPorts = [ 80 ];
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "admin@ghostnoise.ru";
@@ -17,7 +18,7 @@
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
       "admin@ghostnoise.ru" = {
-        hashedPasswordFile = "/etc/nixos/secrets/mailpassword";
+        hashedPasswordFile = config.age.secrets.mailpassword.path;
         aliases = [
           "postmaster@ghostnoise.ru"
           "webmaster@ghostnoise.ru"
