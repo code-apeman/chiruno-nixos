@@ -6,7 +6,7 @@
     ./dnsmasq/netboot.nix
   ];
   services.dnsmasq = {
-    enabled = true;
+    enable = true;
     settings = {
       domain-needed = true;
       listen-address = [ "127.0.0.1,192.168.1.1,192.168.69.1" ];
