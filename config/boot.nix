@@ -12,5 +12,10 @@
       "boot.shell_on_fail"
       "mitigations=off"
     ];
+    kernel.sysctl = {
+      "net.ipv4.ip_forward" = true;
+      "net.ipv4.conf.all.forwarding" = true;
+      "net.ipv6.conf.all.forwarding" = true;
+    };
   };
 }
