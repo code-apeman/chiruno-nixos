@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   boot = {
-    initrd.systemd.enable = false;
+    initrd.systemd.enable = true;
     loader = {
       systemd-boot.enable = true;		# Use the systemd-boot EFI boot loader.
       efi.canTouchEfiVariables = true;
