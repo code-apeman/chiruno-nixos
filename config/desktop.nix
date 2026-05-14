@@ -31,7 +31,7 @@
   environment = {
     systemPackages = with pkgs; [
      #inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default	# glutonous af
-      kitty
+      foot
       cava
       vlc
       mpv
@@ -53,6 +53,7 @@
       pavucontrol
       wineWowPackages.waylandFull
       retroarch-full
+      pywalfox-native
     ];
   };
   nix.settings = {
