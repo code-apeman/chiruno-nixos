@@ -11,7 +11,6 @@
     address= [
       "/chiruno.local/192.168.1.1"
       "/suckless.local/192.168.1.2"
-      "/bocchi.local/192.168.1.4"
     ];
     selfmx = true;
     local = [ "/local/" ];

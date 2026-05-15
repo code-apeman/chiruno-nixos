@@ -13,6 +13,6 @@
       }];
       wannic.useDHCP = true;
     };
-    firewall.trustedInterfaces = [ "lan" ];
+    firewall.trustedInterfaces = [ "lan" "swnic" "pcibotnic" "pcitopnic" ];
   };
 }

@@ -45,4 +45,14 @@
       remotename FreedomCHAP
     '';
   };
+  environment.etc.ppp-up = {
+    enable = true;
+    target = "ppp/ip-up";
+    mode = "0755";
+    text = ''
+      #!${pkgs.bash}/bin/bash
+      ${pkgs.iproute2}/bin/ip route del default
+      ${pkgs.iproute2}/bin/ip route add default dev wan
+    '';
+  };
 }
