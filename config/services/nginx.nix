@@ -4,7 +4,6 @@
 in {
   services = {
     nginx = {
-      group = "ssl";
       enable = true;
       virtualHosts = {
         "www.ghostnoise.ru" = {

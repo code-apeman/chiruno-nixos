@@ -2,7 +2,6 @@
   security.agnos = {
     enable = true;
     generateKeys.enable = true;
-    group = config.services.nginx.group;
     settings = {
       accounts = [{
         certificates = [{
