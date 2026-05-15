@@ -1,21 +1,15 @@
 { config, pkgs, ... }: {
-  age.secrets.mailpassword.file = ../../secrets/mailpassword.age
-  networking.firewall.allowedTCPPorts = [ 80 ];
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "admin@ghostnoise.ru";
-
-  services.nginx.virtualHosts.${config.mailserver.fqdn}.enableACME = true;
+  age.secrets.mailpassword.file = ../../secrets/mailpassword.age;
 
   mailserver = {
     enable = true;
-    stateVersion = 3;
+    stateVersion = 4;
     fqdn = "ghostnoise.ru";
     domains = [ "ghostnoise.ru" ];
 
-    x509.useACMEHost = config.mailserver.fqdn;
+    x509.certificateFile = config.security.agnos.settings.accounts."ghostnoise".certificates.${config.mailserver.fqdn}.fullchain_output_file;
+    x509.privateKeyFile = config.security.agnos.settings.accounts."ghostnoise".certificates.${config.mailserver.fqdn}.key_output_file;
 
-    # A list of all login accounts. To create the password hashes, use
-    # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
       "admin@ghostnoise.ru" = {
         hashedPasswordFile = config.age.secrets.mailpassword.path;
@@ -25,10 +19,10 @@
           "security@ghostnoise.ru"
           "employment@ghostnoise.ru"
           "billing@ghostnoise.ru"
-          "spam@ghostnoise.ru"
           "dev@ghostnoise.ru"
         ];
       };
+      "spam@ghostnoise.ru".hashedPasswordFile = config.age.secrets.mailpassword.path;
     };
   };
 }

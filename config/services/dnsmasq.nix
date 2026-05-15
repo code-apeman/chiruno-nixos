@@ -20,8 +20,4 @@
     };
     resolved.enable = false;
   };
-  networking.firewall.allowedUDPPorts = [
-    53 # DNS
-    67 68 # DHCP
-  ];
 }
