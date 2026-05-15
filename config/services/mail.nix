@@ -10,6 +10,7 @@ in {
     fqdn = "ghostnoise.ru";
     domains = [ "ghostnoise.ru" ];
 
+    localDnsResolver = false;	# prevent dnsmasq conflicts
     x509.certificateFile = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
     x509.privateKeyFile = "/var/lib/agnos/" + agnosCert.key_output_file;
 
