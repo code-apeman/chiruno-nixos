@@ -3,7 +3,7 @@
     enable = true;
     generateKeys.enable = true;
     group = config.services.nginx.group;
-    accounts.ghostnoise = {
+    settings.accounts.ghostnoise = {
       certificates."ghostnoise.ru".domains = [
         "ghostnoise.ru"
         "*.ghostnoise.ru"
