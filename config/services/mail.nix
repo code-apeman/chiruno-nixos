@@ -10,8 +10,8 @@ in {
     fqdn = "ghostnoise.ru";
     domains = [ "ghostnoise.ru" ];
 
-    x509.certificateFile = agnosCert.fullchain_output_file;
-    x509.privateKeyFile = agnosCert.key_output_file;
+    x509.certificateFile = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+    x509.privateKeyFile = "/var/lib/agnos/" + agnosCert.key_output_file;
 
     loginAccounts = {
       "admin@ghostnoise.ru" = {

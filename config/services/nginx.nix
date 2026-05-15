@@ -7,8 +7,8 @@ in {
       enable = true;
       virtualHosts = {
         "www.ghostnoise.ru" = {
-	  sslCertificate = agnosCert.fullchain_output_file;
-	  sslCertificateKey = agnosCert.key_output_file;
+	  sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+	  sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
           forceSSL = true;
           root = "/srv/http/home";
         };

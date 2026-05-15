@@ -9,6 +9,8 @@
               "ghostnoise.ru"
               "*.ghostnoise.ru"
             ];
+           fullchain_output_file = "fullchain.pem";
+           key_output_file = "privkey.pem";
 	  }];
         email = "admin@ghostnoise.ru";
 	private_key_path = config.secrets.agnosprivkey.path;
