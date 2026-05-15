@@ -13,9 +13,6 @@
       "/chiruno.local/192.168.1.1"
       "/suckless.local/192.168.1.2"
     ];
-    cname = [
-      "locally-hosted.ghostnoise.ru,_acme-challenge.ghostnoise.ru"
-    ];
     selfmx = true;
     local = [ "/local/" ];
     domain = [ "local" ];

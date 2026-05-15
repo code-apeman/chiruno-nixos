@@ -9,8 +9,6 @@
     dnsmasq = {
       enable = true;
       settings = {
-        listen-address = "0.0.0.0";
-	no-dhcp-interface = "wannic,wan,finvpn";
         dhcp-range = "192.168.1.100,192.168.1.200,12h";
     
         dhcp-name-match = [ "set:wpad-ignore,wpad" ];
