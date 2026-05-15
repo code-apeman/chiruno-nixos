@@ -1,4 +1,7 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }: let
+  agnosAccount = builtins.head config.security.agnos.settings.accounts;
+  agnosCert = builtins.head agnosAccount.certificates;
+in {
   age.secrets.mailpassword.file = ../../secrets/mailpassword.age;
 
   mailserver = {
@@ -7,8 +10,8 @@
     fqdn = "ghostnoise.ru";
     domains = [ "ghostnoise.ru" ];
 
-    x509.certificateFile = config.security.agnos.settings.accounts."ghostnoise".certificates.${config.mailserver.fqdn}.fullchain_output_file;
-    x509.privateKeyFile = config.security.agnos.settings.accounts."ghostnoise".certificates.${config.mailserver.fqdn}.key_output_file;
+    x509.certificateFile = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+    x509.privateKeyFile = "/var/lib/agnos/" + agnosCert.key_output_file;
 
     loginAccounts = {
       "admin@ghostnoise.ru" = {

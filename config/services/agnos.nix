@@ -4,13 +4,17 @@
     generateKeys.enable = true;
     group = config.services.nginx.group;
     settings = {
-      accounts.ghostnoise = {
-        certificates."ghostnoise.ru".domains = [
-          "ghostnoise.ru"
-          "*.ghostnoise.ru"
-        ];
+      accounts = [{
+        certificates = [{
+	    domains = [
+              "ghostnoise.ru"
+              "*.ghostnoise.ru"
+            ];
+	    fullchain_output_file = "fullchain.pem";
+	    key_output_file = "privkey.pem";
+	  }];
         email = "admin@ghostnoise.ru";
-      };
+      }];
       dns_listen_addr = "217.25.239.233:53"; # set it to my public ip so it won't conflict with dnsmasq
     };
     temporarilyOpenFirewall = true;  };

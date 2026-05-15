@@ -1,12 +1,15 @@
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, inputs, ... }: let
+  agnosAccount = builtins.head config.security.agnos.settings.accounts;
+  agnosCert = builtins.head agnosAccount.certificates;
+in {
   services = {
     nginx = {
       group = "ssl";
       enable = true;
       virtualHosts = {
         "www.ghostnoise.ru" = {
-	  sslCertificate = config.security.agnos.settings.accounts."ghostnoise".certificates."ghostnoise.ru".fullchain_output_file;
-	  sslCertificateKey = config.security.agnos.settings.accounts."ghostnoise".certificates."ghostnoise.ru".key_output_file;
+	  sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+	  sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
           forceSSL = true;
           root = "/srv/http/home";
         };
