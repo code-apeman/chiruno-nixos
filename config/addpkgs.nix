@@ -13,7 +13,6 @@
     ffmpeg
     mpg123
     wl-clipboard
-    mako
     socat
     brightnessctl
     pulsemixer
