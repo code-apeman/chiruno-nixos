@@ -1,5 +1,9 @@
 { config, pkgs, lib, ... }: {
-  age.secrets.agnosprivkey.file = ../../secrets/agnosprivkey.age;
+  age.secrets.agnosprivkey = {
+    file = ../../secrets/agnosprivkey.age;
+    owner = "agnos";
+    group = "agnos";
+  };
   security.agnos = {
     enable = true;
     settings = {
