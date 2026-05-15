@@ -13,7 +13,7 @@
            key_output_file = "privkey.pem";
 	  }];
         email = "admin@ghostnoise.ru";
-	private_key_path = config.secrets.agnosprivkey.path;
+	private_key_path = config.age.secrets.agnosprivkey.path;
       }];
       dns_listen_addr = "217.25.239.233:53"; # set it to my public ip so it won't conflict with dnsmasq
     };
