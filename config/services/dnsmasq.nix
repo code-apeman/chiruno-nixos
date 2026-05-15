@@ -20,4 +20,5 @@
     };
     resolved.enable = false;
   };
+  networking.firewall.allowedUDPPorts = [ 53 ];
 }

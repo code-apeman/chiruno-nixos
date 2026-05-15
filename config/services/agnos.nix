@@ -21,5 +21,5 @@
       }];
       dns_listen_addr = "127.0.0.1:42069";  # per my dnsmasq config
     };
-    temporarilyOpenFirewall = true;  };
+  };
 }

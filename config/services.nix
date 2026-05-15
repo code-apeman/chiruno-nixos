@@ -19,5 +19,6 @@
       pulse.enable = true;
     };
     gvfs.enable = true;				# Enable GVFS.
+    atd.enable = true;
   };
 }
