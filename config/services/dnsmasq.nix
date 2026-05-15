@@ -9,8 +9,6 @@
     dnsmasq = {
       enable = true;
       settings = {
-        interface = "lan";
-        listen-address = "127.0.0.1,192.168.1.1";
         dhcp-range = "192.168.1.100,192.168.1.200,12h";
     
         dhcp-name-match = [ "set:wpad-ignore,wpad" ];

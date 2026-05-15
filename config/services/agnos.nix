@@ -19,7 +19,7 @@
         email = "admin@ghostnoise.ru";
 	private_key_path = config.age.secrets.agnosprivkey.path;
       }];
-      dns_listen_addr = "217.25.239.233:53"; # set it to my public ip so it won't conflict with dnsmasq
+      dns_listen_addr = "127.0.0.1:42069";  # per my dnsmasq config
     };
     temporarilyOpenFirewall = true;  };
 }
