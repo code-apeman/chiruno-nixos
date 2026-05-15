@@ -5,5 +5,6 @@ in {
   "l2tp-secrets.age".publicKeys = [ root-pubkey system-pubkey ];
   "vpn-password.age".publicKeys = [ root-pubkey system-pubkey ];
   "mailpassword.age".publicKeys = [ root-pubkey system-pubkey ];
+  "agnosprivkey.age".publicKeys = [ root-pubkey system-pubkey ];
 }
 

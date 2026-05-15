@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
+  age.secrets.agnosprivkey.file = ../../secrets/agnosprivkey.age;
   security.agnos = {
     enable = true;
-    generateKeys.enable = true;
     settings = {
       accounts = [{
         certificates = [{
@@ -9,10 +9,9 @@
               "ghostnoise.ru"
               "*.ghostnoise.ru"
             ];
-	    fullchain_output_file = "fullchain.pem";
-	    key_output_file = "privkey.pem";
 	  }];
         email = "admin@ghostnoise.ru";
+	private_key_path = config.secrets.agnosprivkey.path;
       }];
       dns_listen_addr = "217.25.239.233:53"; # set it to my public ip so it won't conflict with dnsmasq
     };
