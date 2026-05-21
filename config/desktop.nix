@@ -49,6 +49,7 @@
       kdePackages.ark
       krita
       gimp
+      aseprite
       nemo
       inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default

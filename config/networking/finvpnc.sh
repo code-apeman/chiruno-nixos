@@ -1,13 +1,13 @@
 VPN_INTERNAL_GATEWAY="172.20.0.1"
 EXTRA_RANGES=(
-	"91.108.56.0/22"
-	"91.108.4.0/22"
-	"91.108.8.0/22"
-	"91.108.16.0/22"
-	"91.108.12.0/22"
-	"149.154.160.0/20"
-	"91.105.192.0/23"
-	"91.108.20.0/22"
+    "91.108.56.0/22"
+    "91.108.4.0/22"
+    "91.108.8.0/22"
+    "91.108.16.0/22"
+    "91.108.12.0/22"
+    "149.154.160.0/20"
+    "91.105.192.0/23"
+    "91.108.20.0/22"
     "103.140.28.0/23"
     "128.116.0.0/17"
     "128.116.0.0/24"
@@ -103,10 +103,10 @@ connect() {
 	fi
 
 	echo $TUNDEV > /run/occlient.tundev
-	#iptables -t nat -A POSTROUTING -o $TUNDEV -j MASQUERADE
+	iptables -t nat -A POSTROUTING -o $TUNDEV -j MASQUERADE
 	#iptables -A DOCKER-USER -i lan -o $TUNDEV -j ACCEPT ||\
-	#iptables -A FORWARD -i lan -o $TUNDEV -j ACCEPT
-	for subnet in $(curl -L https://raw.githubusercontent.com/bol-van/rulist/refs/heads/main/reestr_smart4.txt); do
+	iptables -A FORWARD -i lan -o $TUNDEV -j ACCEPT
+	for subnet in $(curl -fsSL https://raw.githubusercontent.com/bol-van/rulist/refs/heads/main/reestr_smart4.txt); do
 		#echo "Adding ${subnet} to IP routing table..."
 		ip route add ${subnet} via $VPN_INTERNAL_GATEWAY dev $TUNDEV
 	done
@@ -114,6 +114,7 @@ connect() {
 		#echo "Adding ${subnet} to IP routing table..."
 		ip route add ${subnet} via $VPN_INTERNAL_GATEWAY dev $TUNDEV || echo "^^^ Adding ${subnet} failed..."
 	done
+	echo "All routes added, VPN connection established."
 }
 
 disconnect() {
