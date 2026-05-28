@@ -8,54 +8,7 @@ EXTRA_RANGES=(
     "149.154.160.0/20"
     "91.105.192.0/23"
     "91.108.20.0/22"
-    "103.140.28.0/23"
-    "128.116.0.0/17"
-    "128.116.0.0/24"
-    "128.116.1.0/24"
-    "128.116.5.0/24"
-    "128.116.11.0/24"
-    "128.116.13.0/24"
-    "128.116.21.0/24"
-    "128.116.22.0/24"
-    "128.116.31.0/24"
-    "128.116.32.0/24"
-    "128.116.33.0/24"
-    "128.116.44.0/24"
-    "128.116.45.0/24"
-    "128.116.46.0/24"
-    "128.116.47.0/24"
-    "128.116.48.0/24"
-    "128.116.50.0/24"
-    "128.116.51.0/24"
-    "128.116.53.0/24"
-    "128.116.54.0/24"
-    "128.116.55.0/24"
-    "128.116.56.0/24"
-    "128.116.57.0/24"
-    "128.116.63.0/24"
-    "128.116.64.0/24"
-    "128.116.67.0/24"
-    "128.116.74.0/24"
-    "128.116.80.0/24"
-    "128.116.81.0/24"
-    "128.116.84.0/24"
-    "128.116.86.0/24"
-    "128.116.87.0/24"
-    "128.116.88.0/24"
-    "128.116.95.0/24"
-    "128.116.97.0/24"
-    "128.116.99.0/24"
-    "128.116.102.0/24"
-    "128.116.105.0/24"
-    "128.116.115.0/24"
-    "128.116.116.0/24"
-    "128.116.117.0/24"
-    "128.116.119.0/24"
-    "128.116.120.0/24"
-    "128.116.123.0/24"
-    "128.116.127.0/24"
-    "141.193.3.0/24"
-    "205.201.62.0/24"
+    "185.76.151.0/24"
 )
 
 pre_init() {
@@ -106,9 +59,15 @@ connect() {
 	iptables -t nat -A POSTROUTING -o $TUNDEV -j MASQUERADE
 	#iptables -A DOCKER-USER -i lan -o $TUNDEV -j ACCEPT ||\
 	iptables -A FORWARD -i lan -o $TUNDEV -j ACCEPT
-	for subnet in $(curl -fsSL https://raw.githubusercontent.com/bol-van/rulist/refs/heads/main/reestr_smart4.txt); do
+    CIDR_REGEX='(((25[0-5]|2[0-4][0-9]|1?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|1?[0-9][0-9]?))(\/([8-9]|[1-2][0-9]|3[0-2]))([^0-9.]|$)'
+    ADDR_REGEX='^(0*(1?[0-9]{1,2}|2([0-4][0-9]|5[0-5]))\.){3}0*(1?[0-9]{1,2}|2([‌0-4][0-9]|5[0-5]))$'
+	for subnet in $(curl -fsSL https://raw.githubusercontent.com/bol-van/rulist/refs/heads/main/reestr_smart4.txt https://raw.githubusercontent.com/medvedeff-true/ru-gaming-blocklist/refs/heads/main/medvedeff-game-ipset.txt | dos2unix); do
 		#echo "Adding ${subnet} to IP routing table..."
-		ip route add ${subnet} via $VPN_INTERNAL_GATEWAY dev $TUNDEV
+        if [[ $subnet =~ $CIDR_REGEX ]] || [[ $subnet =~ $ADDR_REGEX ]]; then
+            ip route add ${subnet} via $VPN_INTERNAL_GATEWAY dev $TUNDEV || echo "^^^ Adding ${subnet} failed. ^^^"
+        else
+            echo "${subnet} is not a valid IPv4 CIDR"
+        fi
 	done
 	for subnet in "${EXTRA_RANGES[@]}"; do
 		#echo "Adding ${subnet} to IP routing table..."

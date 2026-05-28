@@ -2,7 +2,7 @@
   nixpkgs.overlays = [ (final: prev: {
     finvpnc = final.writeShellApplication {
       name = "finvpnc";
-      runtimeInputs = with pkgs; [ curl iptables iproute2 ];
+      runtimeInputs = with pkgs; [ curl iptables iproute2 dos2unix ];
       text = ./finvpnc.sh;
     };
   }) ];

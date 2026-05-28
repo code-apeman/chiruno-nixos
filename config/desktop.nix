@@ -51,7 +51,6 @@
       gimp
       aseprite
       nemo
-      inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       ayugram-desktop
       prismlauncher
@@ -59,6 +58,7 @@
       wineWowPackages.waylandFull
       retroarch-full
       pywalfox-native
+      equicord
     ];
   };
  #nix.settings = {

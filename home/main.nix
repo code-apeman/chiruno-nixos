@@ -1,14 +1,8 @@
 { config, pkgs, inputs, ... }: {
   imports = [
     ./git.nix
-    ./hyprland.nix
     ./noctalia.nix
-    ./zsh.nix
-    ./kitty.nix
-    inputs.nixcord.homeModules.nixcord
-    ./nixcord.nix
     ./obs.nix
-    ./gtk.nix
     ./nemo.nix
   ];
 
@@ -28,5 +22,4 @@
       EDITOR = "nvim";
     };
   };
-  nixpkgs.config.allowUnfree = true;  # BEGONE DEBIAN
 }

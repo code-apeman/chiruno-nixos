@@ -19,16 +19,8 @@
       inputs.hyprutils.follows = "hyprland/hyprutils";
       inputs.hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
     };
-   quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixcord = {
-      url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     millennium = {
