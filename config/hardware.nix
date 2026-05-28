@@ -1,6 +1,6 @@
 { config, lib, pkgs, modulesPath, ... }: let
-  uidParameter = "uid=" + "${toString users.users.ghostnoise.uid}";
-  gidParameter = "gid=" + "${toString users.groups.wheel.gid}";
+  uidParameter = "uid=" + "${toString config.users.users.ghostnoise.uid}";
+  gidParameter = "gid=" + "${toString config.users.groups.wheel.gid}";
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
