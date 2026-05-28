@@ -1,4 +1,7 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{ config, lib, pkgs, modulesPath, ... }: let
+  uidParameter = "uid=" + ${toString users.users.ghostnoise.uid};
+  gidParameter = "gid=" + ${toString users.groups.wheel.gid};
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -32,7 +35,7 @@
     "/etc/nixos" = {
       device = "/dev/disk/by-uuid/2B37-F689";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [ "fmask=0022" "dmask=0022" uidParameter gidParameter ];
     };
 
     "/boot" = {

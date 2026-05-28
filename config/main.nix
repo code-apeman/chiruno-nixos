@@ -13,6 +13,7 @@
 
   # We need a non-root admin account. Also, since the server is the main PC now, we REALLY need that account.
   users.users.ghostnoise = {
+    uid = 1000;
     isNormalUser = true;
     extraGroups = [ "wheel" "adbusers" ];
   };
