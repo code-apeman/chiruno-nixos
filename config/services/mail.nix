@@ -24,6 +24,7 @@ in {
           "employment@ghostnoise.ru"
           "billing@ghostnoise.ru"
           "dev@ghostnoise.ru"
+          "employment@ghostnoise.ru"
         ];
       };
       "spam@ghostnoise.ru".hashedPasswordFile = config.age.secrets.mailpassword.path;

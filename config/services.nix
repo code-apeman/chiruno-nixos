@@ -6,7 +6,7 @@
     ./services/mail.nix
     ./services/gitlab.nix
     ./services/sharkey.nix
-    ./services/ollama.nix
+   #./services/ollama.nix
   ];
   services = {
     openssh = {
