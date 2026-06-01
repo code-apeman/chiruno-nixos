@@ -7,7 +7,7 @@ in {
       socket = {
         user = "nginx";
         group = "nginx";
-      }
+      };
       process.user = "nginx";
     };
     nginx = {
