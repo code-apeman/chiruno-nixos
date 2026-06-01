@@ -3,6 +3,7 @@
   agnosCert = builtins.head agnosAccount.certificates;
 in {
   age.secrets.mailpassword.file = ../../secrets/mailpassword.age;
+  age.secrets.gitlabmailpassword.file = ../../secrets/gitlabmailpassword.age;
 
   mailserver = {
     enable = true;
@@ -14,7 +15,7 @@ in {
     x509.certificateFile = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
     x509.privateKeyFile = "/var/lib/agnos/" + agnosCert.key_output_file;
 
-    loginAccounts = {
+    accounts = {
       "admin@ghostnoise.ru" = {
         hashedPasswordFile = config.age.secrets.mailpassword.path;
         aliases = [
@@ -27,7 +28,11 @@ in {
           "employment@ghostnoise.ru"
         ];
       };
-      "spam@ghostnoise.ru".hashedPasswordFile = config.age.secrets.mailpassword.path;
+      "spam@ghostnoise.ru" = {
+        hashedPasswordFile = config.age.secrets.mailpassword.path;
+        catchAll = [ "ghostnoise.ru" ];
+      };
+      "git@ghostnoise.ru".hashedPasswordFile = config.age.secrets.gitlabmailpassword.path;
     };
   };
 }

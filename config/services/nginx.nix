@@ -5,10 +5,11 @@ in {
   services = {
     nginx = {
       enable = true;
+      group = "ssl";
       virtualHosts = {
         "www.ghostnoise.ru" = {
-	  sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
-	  sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
+          sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+          sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
           forceSSL = true;
           root = "/srv/http/home";
         };
