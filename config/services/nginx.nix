@@ -38,7 +38,6 @@ in {
           };
         };
       };
-      phpEnv."PATH" = lib.makeBinPath [ pkgs.ffmpeg ];
     };
     phpfpm.pools = {
       homepage = {
@@ -52,6 +51,7 @@ in {
           "pm.max_spare_servers" = 3;
           "pm.max_requests" = 500;
         };
+        phpEnv."PATH" = lib.makeBinPath [ pkgs.ffmpeg ];
       };
     };
   };
