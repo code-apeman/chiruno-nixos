@@ -6,7 +6,7 @@ in {
     fcgiwrap.instances.homepage = {
       socket = {
         user = "nginx";
-        group = "nginx";
+        group = "nogroup";
       };
       process.user = "nginx";
     };
