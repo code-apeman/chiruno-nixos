@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }: {
-  users.groups.ssl = {}
+  users.groups.ssl = {};
   age.secrets.agnosprivkey = {
     file = ../../secrets/agnosprivkey.age;
     owner = "agnos";
