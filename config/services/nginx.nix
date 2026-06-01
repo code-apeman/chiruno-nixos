@@ -3,6 +3,10 @@
   agnosCert = builtins.head agnosAccount.certificates;
 in {
   services = {
+    services.fcgiwrap = {
+      enable = true;
+      user = "nginx";
+    };
     nginx = {
       enable = true;
       group = "ssl";
@@ -12,13 +16,29 @@ in {
           sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
           forceSSL = true;
           root = "/srv/http/home";
+          locations = {
+            "~ \\.php$".extraConfig = ''
+              fastcgi_pass  unix:${config.services.phpfpm.pools.homepage.socket};
+              fastcgi_index index.php;
+            '';
+            "/cgi-bin/".extraConfig = ''
+              fastcgi_pass unix:/run/fcgiwrap.sock;
+              include      ${pkgs.nginx}/conf/fastcgi_params;
+            '';
+            "/uploads/".extraConfig = ''
+              autoindex on;
+              autoindex_localtime on;
+              autoindex_exact_size off;
+            ''
+            "/guide".index = "how-to-kys.mp4";
+          };
         };
       };
     };
     phpfpm.pools = {
       homepage = {
         user = "nobody";
-	settings = {
+        settings = {
           "pm" = "dynamic";
           "listen.owner" = config.services.nginx.user;
           "pm.max_children" = 5;
