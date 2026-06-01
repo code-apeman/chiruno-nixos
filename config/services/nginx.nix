@@ -3,12 +3,9 @@
   agnosCert = builtins.head agnosAccount.certificates;
 in {
   services = {
-    fcgiwrap = {
-      enable = true;
-      instances.homepage = {
-        socket.user = "nginx";
-        process.user = "nginx";
-      };
+    fcgiwrap.instances.homepage = {
+      socket.user = "nginx";
+      process.user = "nginx";
     };
     nginx = {
       enable = true;
