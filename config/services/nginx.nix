@@ -25,7 +25,7 @@ in {
               fastcgi_index index.php;
             '';
             "/cgi-bin/".extraConfig = ''
-              fastcgi_pass unix:${config.services.fcgiwrap.instances.homepage.socket,address};
+              fastcgi_pass unix:${config.services.fcgiwrap.instances.homepage.socket.address};
               include      ${pkgs.nginx}/conf/fastcgi_params;
             '';
             "/uploads/".extraConfig = ''
