@@ -38,6 +38,7 @@ in {
           };
         };
       };
+      phpEnv."PATH" = lib.makeBinPath [ pkgs.ffmpeg ];
     };
     phpfpm.pools = {
       homepage = {
