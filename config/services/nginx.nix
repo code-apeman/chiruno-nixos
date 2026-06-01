@@ -5,7 +5,10 @@ in {
   services = {
     fcgiwrap = {
       enable = true;
-      user = "nginx";
+      instances.homepage = {
+        socket.user = "nginx";
+        process.user = "nginx";
+      };
     };
     nginx = {
       enable = true;
