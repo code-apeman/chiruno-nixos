@@ -29,7 +29,7 @@ in {
               autoindex on;
               autoindex_localtime on;
               autoindex_exact_size off;
-            ''
+            '';
             "/guide".index = "how-to-kys.mp4";
           };
         };
