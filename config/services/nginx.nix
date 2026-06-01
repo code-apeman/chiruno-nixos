@@ -3,7 +3,7 @@
   agnosCert = builtins.head agnosAccount.certificates;
 in {
   services = {
-    services.fcgiwrap = {
+    fcgiwrap = {
       enable = true;
       user = "nginx";
     };
