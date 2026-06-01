@@ -19,8 +19,8 @@ in {
           sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
           forceSSL = true;
           root = "/srv/http/home";
-          index = "index.php index.html index.htm";
           locations = {
+            "/".index = "index.php index.html index.htm";
             "~ \\.php$".extraConfig = ''
               fastcgi_pass  unix:${config.services.phpfpm.pools.homepage.socket};
               fastcgi_index index.php;
