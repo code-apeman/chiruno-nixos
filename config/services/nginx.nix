@@ -4,7 +4,10 @@
 in {
   services = {
     fcgiwrap.instances.homepage = {
-      socket.user = "nginx";
+      socket = {
+        user = "nginx";
+        group = "nginx";
+      }
       process.user = "nginx";
     };
     nginx = {
@@ -22,7 +25,7 @@ in {
               fastcgi_index index.php;
             '';
             "/cgi-bin/".extraConfig = ''
-              fastcgi_pass unix:/run/fcgiwrap.sock;
+              fastcgi_pass unix:${config.services.fcgiwrap.instances.homepage.socket,address};
               include      ${pkgs.nginx}/conf/fastcgi_params;
             '';
             "/uploads/".extraConfig = ''
