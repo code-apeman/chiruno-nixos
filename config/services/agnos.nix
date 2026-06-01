@@ -7,7 +7,7 @@
   };
   security.agnos = {
     enable = true;
-    group = ssl;
+    group = "ssl";
     settings = {
       accounts = [{
         certificates = [{
