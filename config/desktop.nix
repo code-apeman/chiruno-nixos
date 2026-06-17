@@ -55,7 +55,7 @@
       ayugram-desktop
       prismlauncher
       pavucontrol
-      wineWowPackages.waylandFull
+      wineWow64Packages.stable
       retroarch-full
       pywalfox-native
       equicord
