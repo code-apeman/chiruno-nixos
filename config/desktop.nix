@@ -68,6 +68,7 @@ in {
       nemo
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       mpvpaper
+      mpvpaper-stop
       ayugram-desktop
       prismlauncher
       pavucontrol
