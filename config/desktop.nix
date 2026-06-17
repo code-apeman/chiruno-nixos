@@ -7,7 +7,7 @@
         owner = "pvtoari";
         repo = "mpvpaper-stop";
         rev = "fce30be5319a5039026e1b908c48b1509466ff5a";
-        hash = "sha256-fce30be5319a5039026e1b908c48b1509466ff5a";
+        hash = "sha256-IN0K5lw7pEU4G+Hk/eBvF9qdlF7OMNPJcXDT/nbz/zg=";
       };
       
       nativeBuildInputs = with pkgs; [ meson ninja pkg-config ];
