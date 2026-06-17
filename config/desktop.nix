@@ -52,6 +52,7 @@
       aseprite
       nemo
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      mpvpaper
       ayugram-desktop
       prismlauncher
       pavucontrol
