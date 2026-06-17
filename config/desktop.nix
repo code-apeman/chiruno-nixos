@@ -1,4 +1,19 @@
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, inputs, ... }: let
+    mpvpaper-stop = pkgs.stdenv.mkDerivation {
+      name = "mpvpaper-stop";
+      version = "latest-commit";
+
+      src = pkgs.fetchFromGitHub {
+        owner = "pvtoari";
+        repo = "mpvpaper-stop";
+        rev = "fce30be5319a5039026e1b908c48b1509466ff5a";
+        hash = "sha256-fce30be5319a5039026e1b908c48b1509466ff5a";
+      };
+      
+      nativeBuildInputs = with pkgs; [ meson ninja pkg-config ];
+      buildInputs = with pkgs; [ cjson ];
+    };
+in {
   imports = [
     inputs.noctalia.nixosModules.default
   ];
