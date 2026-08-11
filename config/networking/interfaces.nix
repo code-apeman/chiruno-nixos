@@ -3,8 +3,7 @@
     useDHCP = false;
     bridges.lan.interfaces = [
       "swnic"
-      "pcitopnic"
-      "pcibotnic"
+      "pcinic"
     ];
     interfaces = {
       lan.ipv4.addresses = [{
@@ -13,6 +12,6 @@
       }];
       wannic.useDHCP = true;
     };
-    firewall.trustedInterfaces = [ "lan" "swnic" "pcibotnic" "pcitopnic" ];
+    firewall.trustedInterfaces = [ "lan" "swnic" "pcibotnic" "pcitopnic" "wlan2g" "wlan5g" ];
   };
 }

@@ -14,6 +14,12 @@ in {
       enable = true;
       group = "ssl";
       virtualHosts = {
+        "ghostnoise.ru" = {
+           sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+           sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
+           forceSSL = true;
+           globalRedirect = "www.ghostnoise.ru";
+        };
         "www.ghostnoise.ru" = {
           sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
           sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;

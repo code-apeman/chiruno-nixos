@@ -15,11 +15,13 @@
   users.users.ghostnoise = {
     uid = 1000;
     isNormalUser = true;
-    extraGroups = [ "wheel" "adbusers" ];
+    extraGroups = [ "wheel" "adbusers" "plugdev" ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;	# DEBIAN GTFO
+  nixpkgs.config = {
+    allowUnfree = true;	# DEBIAN GTFO
+  };
 
   system = {
     stateVersion = "25.11";		# Do not change.

@@ -10,11 +10,10 @@
     ];
     address = [
       "/chiruno.local/192.168.1.1"
-      "/suckless.local/192.168.1.2"
     ];
     selfmx = true;
     local = [ "/local/" ];
     domain = [ "local" ];
-    expand-hosts = true;
+    no-hosts = true;
   };
 }

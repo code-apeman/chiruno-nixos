@@ -6,15 +6,14 @@
     ./services/mail.nix
     ./services/gitlab.nix
     ./services/sharkey.nix
-   #./services/ollama.nix
+    ./services/hostapd.nix
   ];
   services = {
     openssh = {
       enable = true;
+      settings.X11Forwarding = true;
     };
-    printing = {
-      enable = true;
-    };
+    printing.enable = true;
     pipewire = {
       enable = true;
       pulse.enable = true;

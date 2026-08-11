@@ -19,11 +19,11 @@ in {
   boot = {
     initrd = {
       availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "xhci_pci" "nvme" "usbhid" ];
-      kernelModules = [ ];
+      kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
     kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
   };
+
 
   fileSystems = {
     "/" = {
@@ -55,5 +55,7 @@ in {
     { device = "/dev/disk/by-uuid/583c94d0-c7c9-49ca-8015-b04dd7b6c5f8"; }
   ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs = {
+    hostPlatform = lib.mkDefault "x86_64-linux";
+  };
 }

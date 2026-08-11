@@ -4,6 +4,7 @@
 in {
   age.secrets.mailpassword.file = ../../secrets/mailpassword.age;
   age.secrets.gitlabmailpassword.file = ../../secrets/gitlabmailpassword.age;
+  age.secrets.sharkeymailpassword.file = ../../secrets/sharkeymailpassword.age;
 
   mailserver = {
     enable = true;
@@ -33,6 +34,7 @@ in {
         catchAll = [ "ghostnoise.ru" ];
       };
       "git@ghostnoise.ru".hashedPasswordFile = config.age.secrets.gitlabmailpassword.path;
+      "sharkey@ghostnoise.ru".hashedPasswordFile = config.age.secrets.sharkeymailpassword.path;
     };
   };
 }
