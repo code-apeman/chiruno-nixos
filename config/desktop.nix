@@ -82,7 +82,7 @@ in {
     };
     appimage = {
       enable = true;
-      bimfmt = true;
+      binfmt = true;
     };
   };
   environment = {
