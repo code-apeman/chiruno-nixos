@@ -2,7 +2,6 @@
   environment.systemPackages = with pkgs; [
     android-tools
     scrcpy
-    neovim
     curl
     wget
     fastfetch
@@ -17,6 +16,7 @@
     brightnessctl
     pulsemixer
     rar
+    psmisc
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

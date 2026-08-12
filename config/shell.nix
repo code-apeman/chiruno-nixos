@@ -16,7 +16,7 @@
         enable = true;
         plugins = [
           "git"
-	  "systemd"
+          "systemd"
         ];
         theme = "agnoster";
       };

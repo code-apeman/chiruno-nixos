@@ -80,19 +80,19 @@ in {
         droidcam-obs
       ];
     };
+    appimage = {
+      enable = true;
+      bimfmt = true;
+    };
   };
   environment = {
     systemPackages = with pkgs; [
-     #inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default	# glutonous af
       foot
       cava
       vlc
       mpv
       mpvpaper
       inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.hyprpicker
-     #inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
-     #hyprpicker
-     #hyprpaper
       hyprshot
       kdePackages.gwenview
       kdePackages.ark
@@ -117,24 +117,16 @@ in {
       milkytracker
       furnace
       zenity
+      keepassxc
+      neovim
     ];
+    variables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
   };
   # required for non-root IMSProg
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5512", MODE="0666"
   '';
- #nix.settings = {
- #  substituters = [
- #   #"https://hyprland.cachix.org"
- #    "https://cache.garnix.io"
- #  ];
- #  trusted-substituters = [	# DRY can suck my big shiny-
- #   #"https://hyprland.cachix.org"
- #    "https://cache.garnix.io"
- #  ];
- #  trusted-public-keys = [
- #   #"hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
- #    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
- #  ];
- #};
 }
