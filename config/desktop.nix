@@ -76,7 +76,6 @@ in {
         obs-vkcapture
         obs-websocket
         obs-scale-to-sound
-        obs-dvd-screensaver
         droidcam-obs
       ];
     };
