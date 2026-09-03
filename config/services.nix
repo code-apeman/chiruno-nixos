@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
   imports = [
     ./services/dnsmasq.nix
-    ./services/agnos.nix
+    ./services/acme.nix
     ./services/nginx.nix
     ./services/mail.nix
     ./services/gitlab.nix

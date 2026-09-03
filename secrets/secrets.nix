@@ -8,6 +8,7 @@ in {
   "sharkeymailpassword.age".publicKeys = [ root-pubkey system-pubkey ];
   "gitlabmailpassword.age".publicKeys = [ root-pubkey system-pubkey ];
   "agnosprivkey.age".publicKeys = [ root-pubkey system-pubkey ];
+  "desectoken.age".publicKeys = [ root-pubkey system-pubkey ];
   "wifikey.age".publicKeys = [ root-pubkey system-pubkey ];
 }
 

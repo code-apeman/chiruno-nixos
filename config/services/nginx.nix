@@ -1,6 +1,8 @@
 { config, lib, pkgs, inputs, ... }: let
-  agnosAccount = builtins.head config.security.agnos.settings.accounts;
-  agnosCert = builtins.head agnosAccount.certificates;
+ #agnosAccount = builtins.head config.security.agnos.settings.accounts;
+ #agnosCert = builtins.head agnosAccount.certificates;
+  useACMEHost = "ghostnoise.ru";
+  acmeRoot = null;
 in {
   services = {
     fcgiwrap.instances.homepage = {
@@ -15,14 +17,16 @@ in {
       group = "ssl";
       virtualHosts = {
         "ghostnoise.ru" = {
-           sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
-           sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
-           forceSSL = true;
-           globalRedirect = "www.ghostnoise.ru";
+         #sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+         #sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
+          forceSSL = true;
+          globalRedirect = "www.ghostnoise.ru";
+          inherit useACMEHost acmeRoot;
         };
         "www.ghostnoise.ru" = {
-          sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
-          sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
+         #sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+         #sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
+          inherit useACMEHost acmeRoot;
           forceSSL = true;
           root = "/srv/http/home";
           locations = {

@@ -1,6 +1,6 @@
 { config, pkgs, ... }: let
-  agnosAccount = builtins.head config.security.agnos.settings.accounts;
-  agnosCert = builtins.head agnosAccount.certificates;
+ #agnosAccount = builtins.head config.security.agnos.settings.accounts;
+ #agnosCert = builtins.head agnosAccount.certificates;
 in {
   age.secrets.mailpassword.file = ../../secrets/mailpassword.age;
   age.secrets.gitlabmailpassword.file = ../../secrets/gitlabmailpassword.age;
@@ -13,8 +13,9 @@ in {
     domains = [ "ghostnoise.ru" ];
 
     localDnsResolver = false;	# prevent dnsmasq conflicts
-    x509.certificateFile = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
-    x509.privateKeyFile = "/var/lib/agnos/" + agnosCert.key_output_file;
+    x509.useACMEHost = "ghostnoise.ru";
+   #x509.certificateFile = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+   #x509.privateKeyFile = "/var/lib/agnos/" + agnosCert.key_output_file;
 
     accounts = {
       "admin@ghostnoise.ru" = {

@@ -1,6 +1,6 @@
 { config, lib, pkgs, inputs, ... }: let
-  agnosAccount = builtins.head config.security.agnos.settings.accounts;
-  agnosCert = builtins.head agnosAccount.certificates;
+ #agnosAccount = builtins.head config.security.agnos.settings.accounts;
+ #agnosCert = builtins.head agnosAccount.certificates;
 in {
   services = {
     sharkey = {
@@ -12,8 +12,10 @@ in {
       };
     };
     nginx.virtualHosts."fedi.ghostnoise.ru" = {
-      sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
-      sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
+     #sslCertificate = "/var/lib/agnos/" + agnosCert.fullchain_output_file;
+     #sslCertificateKey = "/var/lib/agnos/" + agnosCert.key_output_file;
+      useACMEHost = "ghostnoise.ru";
+      acmeRoot = null;
       forceSSL = true;
       http2 = true;
       locations = {
