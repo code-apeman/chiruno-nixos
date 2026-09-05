@@ -114,6 +114,7 @@ in {
       })
       imsprog
       milkytracker
+      schismtracker
       furnace
       zenity
       keepassxc
