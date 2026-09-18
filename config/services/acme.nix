@@ -13,8 +13,13 @@
 	    environmentFile = config.age.secrets.desectoken.path;
       group = "ssl";
     };
-    certs."ghostnoise.ru".extraDomainNames = [
-      "*.ghostnoise.ru"
-    ];
+    certs = {
+      "ghostnoise.ru".extraDomainNames = [
+        "*.ghostnoise.ru"
+      ];
+      "ghostnoise.dev".extraDomainNames = [
+        "*.ghostnoise.dev"
+      ];
+    };
   };
 }

@@ -16,6 +16,7 @@
     brightnessctl
     pulsemixer
     rar
+    tmux
     psmisc
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
