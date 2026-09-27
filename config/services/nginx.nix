@@ -12,6 +12,9 @@
     inherit acmeRoot;
   };
 in {
+  systemd.services."fcgiwrap-homepage".path = [
+    pkgs.ffmpeg
+  ];
   services = {
     fcgiwrap.instances.homepage = {
       socket = {

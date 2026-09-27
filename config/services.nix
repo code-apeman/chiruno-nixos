@@ -7,13 +7,13 @@
     ./services/gitlab.nix
     ./services/sharkey.nix
     ./services/hostapd.nix
+    ./services/printing.nix
   ];
   services = {
     openssh = {
       enable = true;
       settings.X11Forwarding = true;
     };
-    printing.enable = true;
     pipewire = {
       enable = true;
       pulse.enable = true;
