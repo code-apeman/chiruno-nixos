@@ -14,6 +14,7 @@
       drivers = with pkgs; [
         gutenprint
         gutenprintBin
+        foomatic-db-ppds-withNonfreeDb
       ];
       listenAddresses = [ "192.168.1.1:631" "127.0.0.1:631" ];
       allowFrom = [ "all" ];
