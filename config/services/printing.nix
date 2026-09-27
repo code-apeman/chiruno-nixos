@@ -25,14 +25,14 @@ trap '${pkgs.coreutils-full}/bin/rm -f ''${inFile} > /dev/null 2>&1' EXIT
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #
 ######################################################################
-CAT="${pkgs.coreutils-full}cat"
-CUT="${pkgs.coreutils-full} cut"
-ECHO="${pkgs.coreutils-full} echo"
-GREP="${pkgs.gnugrep} grep"
-MKTEMP="${pkgs.coreutils-full} mktemp"
-RM="${pkgs.coreutils-full} rm"
-SED="${pkgs.gnused} sed"
-TR="${pkgs.coreutils-full} tr"
+CAT="${pkgs.coreutils-full}/bin/cat"
+CUT="${pkgs.coreutils-full}/bin/cut"
+ECHO="${pkgs.coreutils-full}/bin/echo"
+GREP="${pkgs.gnugrep}/bin/grep"
+MKTEMP="${pkgs.coreutils-full}/bin/mktemp"
+RM="${pkgs.coreutils-full}/bin/rm"
+SED="${pkgs.gnused}/bin/sed"
+TR="${pkgs.coreutils-full}/bin/tr"
 
 GROUP="/etc/group"
 
