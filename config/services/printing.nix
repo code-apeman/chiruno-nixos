@@ -184,7 +184,7 @@ $\{ECHO} -e "\033%-12345"
 $\{RM} -f $\{inFile} > /dev/null 2>&1
 
 exit 0
-      ''
+      '';
     };
   }) ];
   services = {
