@@ -10,6 +10,10 @@
       };
     };
     printing = {
+      drivers = with pkgs; [
+        gutenprint
+        gutenprintBin
+      ];
       listenAddresses = [ "192.168.1.1:631" "127.0.0.1:631" ];
       allowFrom = [ "all" ];
       browsing = true;
