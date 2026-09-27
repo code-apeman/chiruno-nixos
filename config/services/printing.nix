@@ -185,6 +185,11 @@ fi
 
 exit 0
       '';
+      postInstall = ''
+        mkdir -p $out/lib/cups/filter
+        mv $out/bin/rastertookimonochrome $out/lib/cups/filter
+        rmdir $out/bin
+      '';
     }).overrideAttrs {
       checkPhase = "";
     };
