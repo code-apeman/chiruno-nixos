@@ -1,9 +1,7 @@
 { config, lib, pkgs, inputs, ... }: {
   nixpkgs.overlays = [ (final: prev: {
-    rastertookimonochrome = (final.writeShellApplication {
-      name = "rastertookimonochrome";
-      runtimeInputs = with pkgs; [ cups ];
-      text = ''
+    rastertookimonochrome = (final.stdenv.mkDerivation {
+      src = ''
 #!/bin/sh
 trap '${pkgs.coreutils-full}/bin/rm -f ''${inFile} > /dev/null 2>&1' EXIT
 
@@ -185,14 +183,14 @@ fi
 
 exit 0
       '';
-    }).overrideAttrs {
-      checkPhase = "echo \"all good\"";
-      postInstall = ''
+      dontUnpack = true;
+
+      installPhase = ''
         mkdir -p $out/lib/cups/filter
-        mv $out/bin/rastertookimonochrome $out/lib/cups/filter
-        rmdir $out/bin
+        cp $src $out/lib/cups/filter/rastertookimonochrome
+        chmod +x $out/lib/cups/filter/rastertookimonochrome
       '';
-    };
+    });
   }) ];
   services = {
     avahi = {
