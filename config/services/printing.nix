@@ -1,6 +1,7 @@
 { config, lib, pkgs, inputs, ... }: {
   nixpkgs.overlays = [ (final: prev: {
     rastertookimonochrome = (final.stdenv.mkDerivation {
+      name = "rastertookimonochrome";
       src = ''
 #!/bin/sh
 trap '${pkgs.coreutils-full}/bin/rm -f ''${inFile} > /dev/null 2>&1' EXIT
