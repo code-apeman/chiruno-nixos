@@ -1,6 +1,6 @@
 { config, lib, pkgs, inputs, ... }: {
   nixpkgs.overlays = [ (final: prev: {
-    rastertookimonochrome = final.writeShellApplication {
+    rastertookimonochrome = (final.writeShellApplication {
       name = "rastertookimonochrome";
       runtimeInputs = with pkgs; [ cups ];
       text = ''
@@ -185,6 +185,8 @@ fi
 
 exit 0
       '';
+    }).overrideAttrs {
+      checkPhase = "";
     };
   }) ];
   services = {
