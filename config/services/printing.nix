@@ -187,7 +187,7 @@ exit 0
       '';
     }).overrideAttrs {
       checkPhase = "echo \"all good\"";
-      postBuild = ''
+      postInstall = ''
         mkdir -p $out/lib/cups/filter
         mv $out/bin/rastertookimonochrome $out/lib/cups/filter
         rmdir $out/bin
