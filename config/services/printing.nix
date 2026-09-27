@@ -5,7 +5,7 @@
       runtimeInputs = with pkgs; [ cups ];
       text = ''
 #!/bin/sh
-trap '${pkgs.coreutils-full}/bin/rm -f $\{inFile} > /dev/null 2>&1' EXIT
+trap '${pkgs.coreutils-full}/bin/rm -f ''${inFile} > /dev/null 2>&1' EXIT
 
 ######################################################################
 #
@@ -42,87 +42,87 @@ RASTERTOHP="${pkgs.cups}/lib/cups/filter/rastertohp"
 do_get_pjl()
 {
 
-	pattern="$\{1}"
-	ppd="$\{2}"
+	pattern="''${1}"
+	ppd="''${2}"
 
 
-	someOption=$($\{GREP} "^*Default$\{pattern}:" $\{ppd}  | $\{TR} -d '[:space:]' | $\{CUT} -d':' -f2)
-	someString=$($\{GREP} "^*$\{pattern} $\{someOption}" $\{ppd}  | $\{CUT} -d'"' -f2|$\{CUT} -d'<' -f1)
+	someOption=$(''${GREP} "^*Default''${pattern}:" ''${ppd}  | ''${TR} -d '[:space:]' | ''${CUT} -d':' -f2)
+	someString=$(''${GREP} "^*''${pattern} ''${someOption}" ''${ppd}  | ''${CUT} -d'"' -f2|''${CUT} -d'<' -f1)
 
 
-	$\{ECHO} "$\{someString}"
+	''${ECHO} "''${someString}"
 }
 
 do_get_value()
 {
 
-	pattern="$\{1}"
-	ppd="$\{2}"
+	pattern="''${1}"
+	ppd="''${2}"
 
 
-	someString=$($\{GREP} -iw "$\{pattern}" $\{ppd}  | $\{CUT} -d'/' -f1 | $\{CUT} -d' ' -f2 | $\{SED} 's/://' | $\{SED} 's/Env//' | $\{TR} '[:lower:]' '[:upper:]' 2> /dev/null)
+	someString=$(''${GREP} -iw "''${pattern}" ''${ppd}  | ''${CUT} -d'/' -f1 | ''${CUT} -d' ' -f2 | ''${SED} 's/://' | ''${SED} 's/Env//' | ''${TR} '[:lower:]' '[:upper:]' 2> /dev/null)
 
 
-	$\{ECHO} "$\{someString}"
+	''${ECHO} "''${someString}"
 }
 
-if [ ! -x "$\{RASTERTOHP}" ] ; then
-	$\{ECHO} "ERROR: $\{RASTERTOHP} not executable." 1>&2
+if [ ! -x "''${RASTERTOHP}" ] ; then
+	''${ECHO} "ERROR: ''${RASTERTOHP} not executable." 1>&2
 	exit 1
 fi
 
 
-inFile=$($\{MKTEMP} $\{TMPDIR:-/tmp}/XXXXXX)
+inFile=$(''${MKTEMP} ''${TMPDIR:-/tmp}/XXXXXX)
 
-$\{RM} -f $\{inFile} > /dev/null 2>&1
+''${RM} -f ''${inFile} > /dev/null 2>&1
 
 media=""
 TonerSaving=""
 PageSizeCheck=""
 TraySwitch=""
 
-_jobid="$\{1}"
-_user="$\{2}"
-_title="$\{3}"
-_options="$\{5}"
+_jobid="''${1}"
+_user="''${2}"
+_title="''${3}"
+_options="''${5}"
 manual_feed="@PJL SET MANUALFEED=OFF"
 
-tmp_id=`$\{GREP} "^$\{_user}:" $\{GROUP}| $\{CUT} -d":" -f3 2> /dev/null`
-_id=`$\{ECHO} $\{tmp_id:-999999988} | $\{SED} -e "s/.*\([0-9]\{9\}\)/\1/"`
+tmp_id=`''${GREP} "^''${_user}:" ''${GROUP}| ''${CUT} -d":" -f3 2> /dev/null`
+_id=`''${ECHO} ''${tmp_id:-999999988} | ''${SED} -e "s/.*\([0-9]\{9\}\)/\1/"`
 
-OKIJOB_ACCT="@PJL OKIJOBACCOUNTJOB JOBACCOUNTID=$\{_id} USERID=\"$\{_user}\" JOBNAME=\"$\{_title}\""
+OKIJOB_ACCT="@PJL OKIJOBACCOUNTJOB JOBACCOUNTID=''${_id} USERID=\"''${_user}\" JOBNAME=\"''${_title}\""
 
-$\{CAT} - > $\{inFile}
+''${CAT} - > ''${inFile}
 
-$\{ECHO} "INFO: options = [$\{_options}] " 1>&2
+''${ECHO} "INFO: options = [''${_options}] " 1>&2
 
 ## user options (* -oName=Value *) ##
-for i in $\{_options}
+for i in ''${_options}
 do
-	upper=`$\{ECHO} $\{i} | $\{TR} '[:lower:]' '[:upper:]'`
-	no_equal=`$\{ECHO} $\{i} | $\{SED} 's/=/ /' 2> /dev/null`
+	upper=`''${ECHO} ''${i} | ''${TR} '[:lower:]' '[:upper:]'`
+	no_equal=`''${ECHO} ''${i} | ''${SED} 's/=/ /' 2> /dev/null`
 
-	case $\{upper} in
+	case ''${upper} in
 		PAGESIZE=ENV10|PAGESIZE=ENV9)
-			media=`do_get_value "^*$\{no_equal}" "$\{PPD}"`
-			PAPER="@PJL SET PAPER=COM$\{media}"
+			media=`do_get_value "^*''${no_equal}" "''${PPD}"`
+			PAPER="@PJL SET PAPER=COM''${media}"
 		;;
 		PAGESIZE=*)
-			media=`do_get_value "^*$\{no_equal}" "$\{PPD}"`
-			PAPER="@PJL SET PAPER=$\{media}"
+			media=`do_get_value "^*''${no_equal}" "''${PPD}"`
+			PAPER="@PJL SET PAPER=''${media}"
 
 		;;
 		*)
-			$\{ECHO} "INFO: Unkown option = [$\{i}] " 1>&2
+			''${ECHO} "INFO: Unkown option = [''${i}] " 1>&2
 		;;
 	esac
 done
 
-if [ -f "$\{PPD}" ] ; then
+if [ -f "''${PPD}" ] ; then
 
-	InputSlot=$($\{GREP} '^*DefaultInputSlot:' $\{PPD} | $\{CUT} -d" " -f2  2> /dev/null)
+	InputSlot=$(''${GREP} '^*DefaultInputSlot:' ''${PPD} | ''${CUT} -d" " -f2  2> /dev/null)
 	
-	case "$\{InputSlot}" in
+	case "''${InputSlot}" in
 		EnvFeed) InputSlotKey=1 ;;
 		Upper)   InputSlotKey=2 ;;
 		Lower)   InputSlotKey=3 ;;
@@ -130,58 +130,58 @@ if [ -f "$\{PPD}" ] ; then
 	esac
 
 
-	if [  "$\{InputSlotKey}" = 1 ] ; then
+	if [  "''${InputSlotKey}" = 1 ] ; then
 		manual_feed="@PJL SET MANUALFEED=ON"
 	fi
 
-	if [ -z "$\{media}" ] ; then
-		media=`do_get_value "^*DefaultPageSize:" "$\{PPD}"`
-		case "$\{media}" in
+	if [ -z "''${media}" ] ; then
+		media=`do_get_value "^*DefaultPageSize:" "''${PPD}"`
+		case "''${media}" in
 			9|10)
-				PAPER="@PJL SET PAPER=COM$\{media}"
+				PAPER="@PJL SET PAPER=COM''${media}"
 			;;
 			*)
-				PAPER="@PJL SET PAPER=$\{media}"
+				PAPER="@PJL SET PAPER=''${media}"
 			;;
 		esac
 	fi
 	
-	TonerSaving=`do_get_pjl "OKOutputMode" "$\{PPD}"`
-	PageSizeCheck=`do_get_pjl "OKPageSizeCheck" "$\{PPD}"`
-	TraySwitch=`do_get_pjl "TraySwitch" "$\{PPD}"`
+	TonerSaving=`do_get_pjl "OKOutputMode" "''${PPD}"`
+	PageSizeCheck=`do_get_pjl "OKPageSizeCheck" "''${PPD}"`
+	TraySwitch=`do_get_pjl "TraySwitch" "''${PPD}"`
 fi
 
 version="v4.0"
 
-UEL="2345X@PJL COMMENT OKI B400/MB400/B4000 PCL Monochrome $\{version}"
+UEL="2345X@PJL COMMENT OKI B400/MB400/B4000 PCL Monochrome ''${version}"
 RDYMSG="@PJL RDYMSG DISPLAY = \"\""
 LANGUAGE="@PJL ENTER LANGUAGE = PCL"
 
-$\{ECHO} $\{UEL}
-$\{ECHO} $\{OKIJOB_ACCT}
-$\{ECHO} $\{manual_feed}
-$\{ECHO} $\{PAPER}
-$\{ECHO} $\{RDYMSG}
+''${ECHO} ''${UEL}
+''${ECHO} ''${OKIJOB_ACCT}
+''${ECHO} ''${manual_feed}
+''${ECHO} ''${PAPER}
+''${ECHO} ''${RDYMSG}
 
-if [ ! -z "$\{TonerSaving}" ] ; then
-	$\{ECHO} $\{TonerSaving}
+if [ ! -z "''${TonerSaving}" ] ; then
+	''${ECHO} ''${TonerSaving}
 fi
 
-if [ ! -z "$\{PageSizeCheck}" ] ; then
-	$\{ECHO} $\{PageSizeCheck}
+if [ ! -z "''${PageSizeCheck}" ] ; then
+	''${ECHO} ''${PageSizeCheck}
 fi
 
-if [ ! -z "$\{TraySwitch}" ] ; then
-	$\{ECHO} $\{TraySwitch}
+if [ ! -z "''${TraySwitch}" ] ; then
+	''${ECHO} ''${TraySwitch}
 fi
 
-$\{ECHO} $\{LANGUAGE}
+''${ECHO} ''${LANGUAGE}
 
-$\{CAT} $\{inFile} | $\{RASTERTOHP} "$\{1}" "$\{2}" "$\{3}" "$\{4}" "" 2>/dev/null
+''${CAT} ''${inFile} | ''${RASTERTOHP} "''${1}" "''${2}" "''${3}" "''${4}" "" 2>/dev/null
 
-$\{ECHO} -e "\033%-12345"
+''${ECHO} -e "\033%-12345"
 
-$\{RM} -f $\{inFile} > /dev/null 2>&1
+''${RM} -f ''${inFile} > /dev/null 2>&1
 
 exit 0
       '';
