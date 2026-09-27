@@ -188,7 +188,7 @@ exit 0
 
       installPhase = ''
         mkdir -p $out/lib/cups/filter
-        cp $src $out/lib/cups/filter/rastertookimonochrome
+        printf '%s\n' "''${src}" > $out/lib/cups/filter/rastertookimonochrome
         chmod +x $out/lib/cups/filter/rastertookimonochrome
       '';
     });
