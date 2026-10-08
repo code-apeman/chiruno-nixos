@@ -23,5 +23,19 @@
     };
     gvfs.enable = true;				# Enable GVFS.
     atd.enable = true;
+    mtprotoproxy = {
+      enable = true;
+      secureOnly = false;
+      extraConfig = {
+        TLS_DOMAIN = "ghostnoise.dev";
+        MODES = {
+          classic = false;
+          secure = false;
+          tls = true;
+        };
+      };
+      users.ghostnoise = "deadbeefdeadbeefdeadbeefdeadbeef";
+    };
   };
+  networking.firewall.allowedTCPPorts = [ config.services.mtprotoproxy.port ];
 }
